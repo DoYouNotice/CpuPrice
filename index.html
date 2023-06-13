@@ -1,0 +1,164 @@
+<html>
+<head>
+    <title>Graphics Card Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <table id="cpuTableBody">
+	<tr>
+	<th>Cpu performance and price data</th>
+	</tr>
+	</table>
+    <script>
+        $(document).ready(function() {
+            var cpu = {
+                "Ryzen 5 5500": "https://geizhals.de/amd-ryzen-5-5500-100-100000457box-a2709165.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 5 5600G": "https://geizhals.de/amd-ryzen-5-5600g-100-100000252box-a2536507.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i3-12100": "https://geizhals.de/intel-core-i3-12100f-cm8071504651013-a2660249.html?t=v&hloc=at&hloc=de&va=b",
+                "Core i3-13100F": "https://geizhals.de/intel-core-i3-13100f-bx8071513100f-a2871147.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 5 5600": "https://geizhals.de/amd-ryzen-5-5600-100-000000927-a2697460.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 5 5600X": "https://geizhals.de/amd-ryzen-5-5600x-100-100000065box-a2392524.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i5-12400": "https://geizhals.de/intel-core-i5-12400f-bx8071512400f-a2659495.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 7 5700X": "https://geizhals.de/amd-ryzen-7-5700x-100-100000926wof-a2709092.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 9 5900X": "https://geizhals.de/amd-ryzen-9-5900x-100-100000061wof-a2392526.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 9 5950X": "https://geizhals.de/amd-ryzen-9-5950x-100-100000059wof-a2392527.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i5-13400 / F": "https://geizhals.de/intel-core-i5-13400f-c0-cm8071505093005-a2871161.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 5 7600": "https://geizhals.de/amd-ryzen-5-7600-100-000001015-a2872863.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 5 7600X": "https://geizhals.de/amd-ryzen-5-7600x-100-000000593-a2819615.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 7 7700X": "https://geizhals.de/amd-ryzen-7-7700x-100-100000591wof-a2801229.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 9 7900": "https://geizhals.de/amd-ryzen-9-7900-100-100000590box-a2871172.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 9 7900X": "https://geizhals.de/amd-ryzen-9-7900x-100-100000909wof-a2872157.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 7 7700": "https://geizhals.de/amd-ryzen-7-7700-100-000000592-a2872864.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 9 7950X": "https://geizhals.de/amd-ryzen-7-7950x-100-100000910-a2872867.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i5-13600K": "https://geizhals.de/intel-core-i5-13600kf-cm8071504821006-a2820436.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Ryzen 7 5800X3D": "https://geizhals.de/amd-ryzen-7-5800x3d-a2660252.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i7-13700K": "https://geizhals.de/intel-core-i7-13700kf-cm8071504820706-a2820438.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i9-13900K": "https://geizhals.de/intel-core-i9-13900kf-bx8071513900kf-a2810141.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                "Core i9-13900KS": "https://geizhals.de/intel-core-i9-13900ks-special-edition-bx8071513900ks-a2876997.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+				"Ryzen 9 7900X3D": "https://geizhals.de/amd-ryzen-9-7900x3d-100-100000909wof-a2872157.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+				"Ryzen 9 7950X3D": "https://geizhals.de/amd-ryzen-9-7950x-100-100000514wof-a2801222.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+				"Ryzen 7 7800X3D": "https://geizhals.de/amd-ryzen-7-7800x3d-100-100000910-a2872867.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                // ... other CPUs ...
+            };
+
+            var basePriceUrl = ""; // Add the base URL for fetching prices
+            var cheapestPrices = {};
+            var costPerFrame = {};
+            var percentageData = {
+                "1080p Gaming Score": {},
+                "1440p Gaming Score": {},
+            };
+
+            async function fetchData() {
+                try {
+                    const response = await fetch("https://www.tomshardware.com/reviews/cpu-hierarchy,4312.html#section-gaming-cpu-benchmarks-ranking-2023");
+                    const html = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, "text/html");
+
+                    const tableRows = doc.querySelectorAll("#slice-container-V7teKs7ev9p3jsgMmVR9A-table-8 > div:nth-child(2) > table:nth-child(1) > tbody:nth-child(3) > tr");
+
+                    const cpuTableBody = document.getElementById("cpuTableBody");
+
+                    // Loop through the table rows and extract CPU name and percentage percentages
+                    tableRows.forEach((row) => {
+                        const cells = row.querySelectorAll("td");
+
+                        // Extract CPU name and remove the price tag
+                        let cpuName = cells[0].textContent;
+                        cpuName = cpuName.replace(/\$\d+\s(?:—|-)\s/g, "");
+
+                        const percentage1080p = cells[1].textContent;
+                        const percentage1440p = cells[2].textContent;
+
+                        // Extract the percentage values from the percentage strings
+                        const percentage1080pPercentage = parseFloat(percentage1080p.match(/\d+\.*\d*/)[0]);
+                        const percentage1440pPercentage = parseFloat(percentage1440p.match(/\d+\.*\d*/)[0]);
+
+                        const newRow = document.createElement("tr");
+
+                        // Create new cells for CPU name and percentage percentages
+                        const cpuNameCell = document.createElement("td");
+                        cpuNameCell.textContent = cpuName;
+                        newRow.appendChild(cpuNameCell);
+						
+                        const percentage1080pCell = document.createElement("td");
+                        percentage1080pCell.textContent = `percentage (1080p): ${percentage1080pPercentage}`;
+                        newRow.appendChild(percentage1080pCell);
+
+                        const percentage1440pCell = document.createElement("td");
+                        percentage1440pCell.textContent = `percentage (1440p): ${percentage1440pPercentage}`;
+                        newRow.appendChild(percentage1440pCell);
+
+                        cpuTableBody.appendChild(newRow);
+
+                                               percentageData["1080p Gaming Score"][cpuName] = percentage1080pPercentage;
+                        percentageData["1440p Gaming Score"][cpuName] = percentage1440pPercentage;
+                    });
+
+                    // Fetch prices for CPUs
+                    for (const cpuName in cpu) {
+                        const cpuUrl = cpu[cpuName];
+                        const response = await fetch(cpuUrl);
+                        const html = await response.text();
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, "text/html");
+
+                        // Extract the price from the website
+                        const priceElement = doc.querySelector("#offer__price-0 > span:nth-child(1)");
+                        const price = parseFloat(priceElement.textContent.replace(/€/g, ""));
+
+                        cheapestPrices[cpuName] = price;
+                    }
+
+                    // Calculate the cost per performance for each CPU
+                    for (const cpuName in percentageData["1080p Gaming Score"]) {
+                        const price = cheapestPrices[cpuName];
+                        const percentage1080p = percentageData["1080p Gaming Score"][cpuName];
+                        const percentage1440p = percentageData["1440p Gaming Score"][cpuName];
+
+                        const costPerFrame1080p = percentage1080p / price
+                        const costPerFrame1440p = percentage1440p / price
+
+                        costPerFrame[cpuName] = {
+                            "1080p": costPerFrame1080p,
+                            "1440p": costPerFrame1440p
+                        };
+                    }
+					// Sort CPUs by cost per performance (1080p) from highest to lowest
+const sortedCPUs = Object.entries(costPerFrame).sort((a, b) => b[1]["1080p"] - a[1]["1080p"]);
+
+// Display cost per performance in the table
+for (const [cpuName, costPerFrameData] of sortedCPUs) {
+    const newRow = document.createElement("tr");
+
+    const cpuNameCell = document.createElement("td");
+    cpuNameCell.textContent = cpuName;
+    newRow.appendChild(cpuNameCell);
+
+    const costPerFrame1080pCell = document.createElement("td");
+    costPerFrame1080pCell.textContent = `cost per performance (1080p): €${costPerFrameData["1080p"].toFixed(2)}`;
+    newRow.appendChild(costPerFrame1080pCell);
+
+    const costPerFrame1440pCell = document.createElement("td");
+    costPerFrame1440pCell.textContent = `cost per performance (1440p): €${costPerFrameData["1440p"].toFixed(2)}`;
+    newRow.appendChild(costPerFrame1440pCell);
+
+    const cheapestPriceCell = document.createElement("td");
+    const cheapestPrice = cheapestPrices[cpuName];a
+    cheapestPriceCell.textContent = `Cheapest Price: €${cheapestPrice.toFixed(2)}`;
+    newRow.appendChild(cheapestPriceCell);
+
+    cpuTableBody.appendChild(newRow);
+}
+
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+
+            fetchData();
+        });
+    </script>
+</body>
+</html>
