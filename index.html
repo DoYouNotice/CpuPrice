@@ -107,7 +107,7 @@
 
                         // Extract the price from the website
                         const priceElement = doc.querySelector("#offer__price-0 > span:nth-child(1)");
-                        const price = parseFloat(priceElement.textContent.replace(/€/g, ""));
+			const price = priceElement ? parseFloat(priceElement.textContent.replace(/€/g, "")) : 0;
 
                         cheapestPrices[cpuName] = price;
                     }
