@@ -146,7 +146,7 @@ for (const [cpuName, costPerFrameData] of sortedCPUs) {
 
     const cheapestPriceCell = document.createElement("td");
     const cheapestPrice = cheapestPrices[cpuName];
-    cheapestPriceCell.textContent = `Cheapest Price: €${cheapestPrice.toFixed(2)}`;
+    cheapestPriceCell.textContent = `Cheapest Price: €${cheapestPrices.toFixed(2)}`;
     newRow.appendChild(cheapestPriceCell);
 
     cpuTableBody.appendChild(newRow);
