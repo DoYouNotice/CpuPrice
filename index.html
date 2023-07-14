@@ -12,7 +12,7 @@
     <script>
         $(document).ready(function() {
             var cpu = {
-                "Ryzen 5 5500": "https://geizhals.de/amd-ryzen-5-5500-100-100000457box-a2709165.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+			"Ryzen 5 5500": "https://geizhals.de/amd-ryzen-5-5500-100-100000457box-a2709165.html?t=v&vl=de&va=b&hloc=at&hloc=de",
                 "Ryzen 5 5600G": "https://geizhals.de/amd-ryzen-5-5600g-100-100000252box-a2536507.html?t=v&vl=de&va=b&hloc=at&hloc=de",
                 "Core i3-12100": "https://geizhals.de/intel-core-i3-12100f-cm8071504651013-a2660249.html?t=v&hloc=at&hloc=de&va=b",
                 "Core i3-13100F": "https://geizhals.de/intel-core-i3-13100f-bx8071513100f-a2871147.html?t=v&vl=de&va=b&hloc=at&hloc=de",
@@ -35,13 +35,12 @@
                 "Core i7-13700K": "https://geizhals.de/intel-core-i7-13700kf-cm8071504820706-a2820438.html?t=v&vl=de&va=b&hloc=at&hloc=de",
                 "Core i9-13900K": "https://geizhals.de/intel-core-i9-13900kf-bx8071513900kf-a2810141.html?t=v&vl=de&va=b&hloc=at&hloc=de",
                 "Core i9-13900KS": "https://geizhals.de/intel-core-i9-13900ks-special-edition-bx8071513900ks-a2876997.html?t=v&vl=de&va=b&hloc=at&hloc=de",
-		"Ryzen 9 7900X3D": "https://geizhals.de/amd-ryzen-9-7900x3d-100-100000909wof-a2872157.html?t=v&vl=de&va=b&hloc=at&hloc=de",
-		"Ryzen 9 7950X3D": "https://geizhals.de/amd-ryzen-9-7950x-100-100000514wof-a2801222.html?t=v&vl=de&va=b&hloc=at&hloc=de",
-		"Ryzen 7 7800X3D": "https://geizhals.de/amd-ryzen-7-7800x3d-100-100000910-a2872867.html?t=v&vl=de&va=b&hloc=at&hloc=de",
-		"Ryzen 5 5600X3D": "https://geizhals.de/amd-ryzen-5-5600x3d-100-100001176-100-000001176-a2979541.html?t=v&hloc=at&hloc=de&va=b",
-                // ... other CPUs ...
+				"Ryzen 9 7900X3D": "https://geizhals.de/amd-ryzen-9-7900x3d-100-100000909wof-a2872157.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+				"Ryzen 9 7950X3D": "https://geizhals.de/amd-ryzen-9-7950x-100-100000514wof-a2801222.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+				"Ryzen 7 7800X3D": "https://geizhals.de/amd-ryzen-7-7800x3d-100-100000910-a2872867.html?t=v&vl=de&va=b&hloc=at&hloc=de",
+                // CPU URLs...
             };
-	    var cheapestPrices = {};
+            var cheapestPrices = {};
             var basePriceUrl = ""; // Add the base URL for fetching prices
             var costPerFrame = {};
             var percentageData = {
@@ -92,7 +91,7 @@
 
                         cpuTableBody.appendChild(newRow);
 
-                                               percentageData["1080p Gaming Score"][cpuName] = percentage1080pPercentage;
+                        percentageData["1080p Gaming Score"][cpuName] = percentage1080pPercentage;
                         percentageData["1440p Gaming Score"][cpuName] = percentage1440pPercentage;
                     });
 
@@ -106,7 +105,7 @@
 
                         // Extract the price from the website
                         const priceElement = doc.querySelector("#offer__price-0 > span:nth-child(1)");
-			const price = priceElement ? parseFloat(priceElement.textContent.replace(/€/g, "")) : 0;
+                        const price = priceElement ? parseFloat(priceElement.textContent.replace(/€/g, "")) : 0;
 
                         cheapestPrices[cpuName] = price;
                     }
@@ -125,33 +124,33 @@
                             "1440p": costPerFrame1440p
                         };
                     }
-					// Sort CPUs by cost per performance (1080p) from highest to lowest
-const sortedCPUs = Object.entries(costPerFrame).sort((a, b) => b[1]["1080p"] - a[1]["1080p"]);
 
-// Display cost per performance in the table
-for (const [cpuName, costPerFrameData] of sortedCPUs) {
-    const newRow = document.createElement("tr");
+                    // Sort CPUs by cost per performance (1080p) from highest to lowest
+                    const sortedCPUs = Object.entries(costPerFrame).sort((a, b) => b[1]["1080p"] - a[1]["1080p"]);
 
-    const cpuNameCell = document.createElement("td");
-    cpuNameCell.textContent = cpuName;
-    newRow.appendChild(cpuNameCell);
+                    // Display cost per performance in the table
+                    for (const [cpuName, costPerFrameData] of sortedCPUs) {
+                        const newRow = document.createElement("tr");
 
-    const costPerFrame1080pCell = document.createElement("td");
-    costPerFrame1080pCell.textContent = `cost per performance (1080p): €${costPerFrameData["1080p"].toFixed(2)}`;
-    newRow.appendChild(costPerFrame1080pCell);
+                        const cpuNameCell = document.createElement("td");
+                        cpuNameCell.textContent = cpuName;
+                        newRow.appendChild(cpuNameCell);
 
-    const costPerFrame1440pCell = document.createElement("td");
-    costPerFrame1440pCell.textContent = `cost per performance (1440p): €${costPerFrameData["1440p"].toFixed(2)}`;
-    newRow.appendChild(costPerFrame1440pCell);
+                        const costPerFrame1080pCell = document.createElement("td");
+                        costPerFrame1080pCell.textContent = `cost per performance (1080p): €${costPerFrameData["1080p"].toFixed(2)}`;
+                        newRow.appendChild(costPerFrame1080pCell);
 
-    const cheapestPriceCell = document.createElement("td");
-    const cheapestPrice = cheapestPrices[cpuName];
-    cheapestPriceCell.textContent = `Cheapest Price: €${cheapestPrices.toFixed(2)}`;
-    newRow.appendChild(cheapestPriceCell);
+                        const costPerFrame1440pCell = document.createElement("td");
+                        costPerFrame1440pCell.textContent = `cost per performance (1440p): €${costPerFrameData["1440p"].toFixed(2)}`;
+                        newRow.appendChild(costPerFrame1440pCell);
 
-    cpuTableBody.appendChild(newRow);
-}
+                        const cheapestPriceCell = document.createElement("td");
+                        const cheapestPrice = cheapestPrices.hasOwnProperty(cpuName) ? cheapestPrices[cpuName] : 0;
+                        cheapestPriceCell.textContent = `Cheapest Price: €${cheapestPrice.toFixed(2)}`;
+                        newRow.appendChild(cheapestPriceCell);
 
+                        cpuTableBody.appendChild(newRow);
+                    }
                 } catch (error) {
                     console.error(error);
                 }
